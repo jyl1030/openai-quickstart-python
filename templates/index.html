@@ -1,21 +1,35 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <head>
-  <title>OpenAI Quickstart</title>
-  <link
-    rel="shortcut icon"
-    href="{{ url_for('static', filename='dog.png') }}"
-  />
-  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+    <title>Natural Language to Python</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
-  <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
-  <h3>Name my pet</h3>
-  <form action="/" method="post">
-    <input type="text" name="animal" placeholder="Enter an animal" required />
-    <input type="submit" value="Generate names" />
-  </form>
-  {% if result %}
-  <div class="result">{{ result }}</div>
-  {% endif %}
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Python Code Generator</h1>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <form action="/" method="post">
+                    <!-- Changed "/translate" to "/" -->
+                    <div class="form-group">
+                        <textarea class="form-control" name="text" placeholder="Enter a description here." rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Generate</button>
+                    </div>
+                </form>
+                {% if translated_code %}
+                <div class="card mt-4">
+                    <div class="card-header">
+                        Python Code
+                    </div>
+                    <div class="card-body">
+                        <pre class="mb-0">{{ translated_code }}</pre>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </body>
